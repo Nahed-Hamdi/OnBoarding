@@ -1,0 +1,37 @@
+describe('companyDetails',()=>{
+    before(()=>{
+        cy.visit('https://onboarding-rps.hs-staging.com/en/register')
+    })
+it('Navigate to Store Info',()=>{
+    cy.xpath('//*[@id="companyFormValidate"]/div/div[1]/label').click()
+    cy.xpath('//*[@id="company_name_ar"]').type('تست')
+    cy.get('#companyFormValidate > .form_container > :nth-child(2)').click()
+    cy.xpath('//*[@id="company_name_en"]').type('TestName')
+    cy.xpath('//*[@id="company_field"]/div[2]/div/div[1]/label').click()
+  cy.xpath('//*[@id="cr_num"]').click()
+  .type('1234567890')
+  cy.xpath('//*[@id="nextBtn"]').click()
+  cy.xpath('//*[@id="step_info"]/span[2]').should('contain','Store Info')
+})
+it('Navigate to Contact Info',()=>{
+    cy.xpath('//*[@id="grocery_0"]').click()
+    cy.xpath('//*[@id="name_ar_0"]').type('تيست')
+    cy.xpath('//*[@id="name_en_0"]').type('Testing')
+    cy.xpath('//*[@id="region_0"]').select('Central')
+    cy.xpath('//*[@id="city_0"]').select('Riyadh')
+    cy.xpath('//*[@id="number_of_branches_0"]').select('1')
+    cy.xpath('//*[@id="store_form_0"]/div[6]/div[2]/div/label').click()
+    cy.xpath('//*[@id="store_form_0"]/div[7]/div[2]/div/label').click()
+    cy.xpath('//*[@id="store_form_0"]/div[8]/div[2]/div/label').click()
+    cy.xpath('//*[@id="nextBtn"]').click()
+    cy.xpath('//*[@id="step_info"]/span[2]').should('contain','Contact Info')
+})
+it('Fill Contact Info',()=>{
+    cy.xpath('//*[@id="user_name"]').click().type('Nahed')
+    cy.xpath('//*[@id="email"]').click().type('Nahed.hamdi@live.com')
+    cy.get('#contact_number').click({force: true}).type('535940841')
+    cy.xpath('//*[@id="contactFormValidate"]/div/div[4]/div[2]/div/label').click()
+    debugger;
+    cy.xpath('//*[@id="nextBtn"]').click()
+})
+})
